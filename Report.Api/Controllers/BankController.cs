@@ -17,12 +17,18 @@ namespace Report.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetReportBancoList()
+        public async Task<IActionResult> GetReportBancoList([FromQuery] DateTime Fecha1, [FromQuery] DateTime Fecha2)
         {
-            var result = await _bankRepository.GetReportBancoList();
+            var result = await _bankRepository.GetReportBancoList(Fecha1, Fecha2);
             return Ok(result);
         }
-        
+
+        [HttpGet("AllWithImage")]
+        public async Task<IActionResult> GetReportBancoAllImageList([FromQuery] DateTime Fecha1, [FromQuery] DateTime Fecha2)
+        { 
+            var result = await _bankRepository.GetReportBancoAllImageList(Fecha1, Fecha2);
+            return Ok(result);
+        }
     [HttpGet("TestConnection")]
     public IActionResult Get()
     {
